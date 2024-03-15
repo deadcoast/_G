@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jrt-fs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/44/.pydev_vscode/java19/jdk-19.0.2+7-jre/lib/jrt-fs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

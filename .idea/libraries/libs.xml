@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.python.pydev.shared_core_10.1.4.202304151225/libs/snakeyaml-engine-2.1-20200105.160423-4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.python.pydev.shared_core_10.1.4.202304151225/libs/org.apache.lucene.core_8.4.1.v20200122-1459.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.python.pydev.shared_core_10.1.4.202304151225/libs/org.apache.lucene.analyzers-common_8.4.1.v20200122-1459.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

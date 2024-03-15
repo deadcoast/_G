@@ -1,0 +1,53 @@
+<component name="libraryTable">
+  <library name="plugins">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.text_3.12.300.v20220921-1010.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.jobs_3.13.200.v20221102-1024.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.event_1.6.100.v20211021-1418.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.python.pydev.pydev_lsp_0.4.0.202305071354.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.util.promise_1.2.0.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.apache.felix.gogo.command_1.1.2.v20221112-0806.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.filesystem.macosx_1.3.400.v20220812-1420.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.osgi.compatibility.state_1.2.800.v20221116-1440.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.resources_3.18.100.v20221025-2047.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.service.component_1.5.0.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.apache.felix.gogo.runtime_1.1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.filesystem_1.9.500.v20220817-1539.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.ltk.core.refactoring_3.13.0.v20220822-0502.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.apache.felix.gogo.shell_1.1.4.v20221112-0806.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.xtext.xbase.lib_2.29.0.v20221121-0915.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.filesystem.linux.x86_64_1.2.400.v20220812-1420.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.debug.core_3.20.0.v20220811-0741.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.variables_3.5.100.v20210721-1355.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.simpleconfigurator_1.4.200.v20221111-1340.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.osgi_3.18.200.v20221116-1324.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.preferences_3.10.100.v20220710-1223.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.util.function_1.2.0.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/com.google.gson_2.8.9.v20220111-1409.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.service.component.annotations_1.5.0.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.commands_3.10.300.v20221024-2137.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/com.google.guava_30.1.0.v20221112-0806.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.runtime_3.26.100.v20221021-0005.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.filesystem.win32.x86_64_1.4.300.v20220812-1420.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.filebuffers_3.7.200.v20220202-1008.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.contenttype_3.8.200.v20220817-1539.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.service.cm_1.6.1.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.registry_3.11.200.v20220817-1601.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.ls.core_0.4.0.202305071354.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.service.metatype_1.4.1.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.lsp4j.jsonrpc_0.12.0.v20210402-1305.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.p2.core_2.9.200.v20220817-1208.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.app_1.6.200.v20220720-2012.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.service.prefs_1.1.2.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.equinox.common_3.17.0.v20221108-1156.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.resources.win32.x86_64_3.5.500.v20220812-1420.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.core.expressions_3.8.200.v20220613-1047.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.apache.felix.scr_2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.osgi.service.event_1.4.1.202109301733.jar!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/fabioz.vscode-pydev-0.4.0/server/plugins/org.eclipse.lsp4j_0.12.0.v20210402-1305.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

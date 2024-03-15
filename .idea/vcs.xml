@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/44" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ASCII-generator" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/langchain-gemma-ollama-chainlit" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/scudd" vcs="Git" />
+  </component>
+</project>

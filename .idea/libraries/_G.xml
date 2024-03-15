@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="_G">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AsciiStudio-4.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/empd-100.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

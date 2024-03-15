@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="googlecloudtools.cloudcode-2.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/googlecloudtools.cloudcode-2.1.0/ai-companion-language-servers.zip!/" />
+      <root url="jar://$PROJECT_DIR$/44/.vscode/extensions/googlecloudtools.cloudcode-2.1.0/source-protect-language-servers.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
