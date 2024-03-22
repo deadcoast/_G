@@ -1,13 +1,103 @@
-import prompt_toolkit
+from prompt_toolkit.eventloop.typing import Event
+from random import random
+from sys import stdin
+import re
+from task5 import get_prediction, validate_input
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.shortcuts import PromptSession
-import re
+
 import requests
 import json
 import curses
 
-# Define the Ollama API endpoint
-url = 'https://api.ollama.com/v1/predict'
+# Initialize the curses window
+stdscr = curses.initscr()
+curses.noecho()
+curses.curs_set(False)
+sh, sw = stdscr.getmaxyx()
+
+# Define some colors for visual effects
+curses.start_color()
+curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
+
+# Create a dynamic greeting message
+greeting = "  __     ______   ____  ___  \n |  |_  / ___/  | / /  \ 'Welcome to the Ollama CLI!'\_\ \n |       \\__ \\  |/ /__/\ /_/ \n |  _    ___) |    \/\n|_,/_./____(_)\/\_\  "
+greeting_window = curses.newwin(sh, sw, 0, 0)
+greeting_window.addstr(greeting, curses.color_pair(1))
+greeting_window.refresh()
+
+# Wait for a random amount of time before continuing
+wait_time = random.uniform(0.5, 2)
+curses.napms(int(wait_time * 1000))
+
+# Define the key bindings
+kb = KeyBindings()
+@kb.add('c-s')
+def save_cb(event):
+    """
+    Save the tasks to a file and exit the CLI.
+    """
+    try:
+        save_tasks()
+    except Exception as e:
+        print(f'Error saving tasks: {str(e)}')
+    finally:
+        event.cli.exit()
+
+kb = KeyBindings()
+
+@kb.add('c-q')
+def exit_cb(event: Event) -> None:
+    """
+    Exit the command line interface.
+    """
+    try:
+        event.cli.exit()
+    except Exception as e:
+        print(f"Error occurred while exiting: {e}")
+    return None
+
+@kb.add('home')
+def move_cursor_to_beginning(event):
+    """
+    Moves the cursor to the beginning of the line.
+    """
+    try:
+        if event.cli is not None:
+            event.cli.current_column = 0
+            return True
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    return False
+
+@kb.add('end')
+def move_cursor_to_end(event):
+    """
+    Move the cursor to the end of the line.
+    """
+    if event is not None:
+        try:
+            event.current_buffer.cursor_position = len(event.current_buffer.text)
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+@kb.add('ctrl-x')
+def delete_char(event):
+    try:
+        cursor_position = event.cli.get_cursor_position()
+        del event.app.current_buffer[cursor_position.column]
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+@kb.add('c-f')
+def move_cursor_right(event):
+    event.cli.current_column += 1
+
+@kb.add('c-b')
+def move_cursor_left(event):
+
+    url = 'https://api.ollama.com/v1/predict'
 
 def get_user_input():
     # Get user input and return it as a string
@@ -164,7 +254,7 @@ def ollama_cli():
     # Display the main menu options
     options = ["Create a new task", "View existing tasks", "Exit"]
     for i, option in enumerate(options):
-        stdscr.addstr(i+1, (sw // 2) - len(option) // 2, option, curses.color_pair(2))
+        stdscr.addstr(i + 1, (sw // 2) - len(option) // 2, option, curses.color_pair(2))
 
     # Wait for user input and handle the selection
     while True:
@@ -173,29 +263,37 @@ def ollama_cli():
             # Handle arrow key events to navigate between options
             current_option = (stdscr.inch(stdscr.cury, 0) - ord('1')) // len(options[0])
             if key == curses.KEY_UP and current_option > 0:
-                stdscr.addstr(current_option+1, 0, ' ', curses.color_pair(1))
-                stdscr.addstr(current_option, 0, options[current_option-1], curses.color_pair(2))
-            elif key == curses.KEY_DOWN and current_option < len(options)-1:
-                stdscr.addstr(current_option+1, 0, ' ', curses.color_pair(1))
-                stdscr.addstr(current_option+2, 0, options[current_option+1], curses.color_pair(2))
-        elif key == curses.KEY_ENTER or key in [ord('1'), ord('2'),ord('3')]:
-            # Handle Enter key and numbered option events
-            stdscr.addstr(stdscr.cury, 0, ' ', curses.color_pair(1))
+                stdscr.addstr(current_option + 1, 0, ' ', curses.color_pair(1))
+                stdscr.addstr(current_option, 0, options[current_option - 1], curses.color_pair(2))
+            elif key == curses.KEY_DOWN and current_option < len(options) - 1:
+                stdscr.addstr(current_option + 1, 0, ' ', curses.color_pair(1))
+                stdscr.addstr(current_option + 2, 0, options[current_option + 1], curses.color_pair(2))
+        elif key == curses.KEY_ENTER or key in [ord('1'), ord('2'), ord('3')]:
+            stdscr.stdin.addstr(stdin.cury, 0, ' ', curses.color_pair(1))
+
             if key == ord('1'):
-                # Create a new task
-                stdscr.addstr(sh // 2, (sw // 2) - len("Enter your new curses.color_pair(2))"
-                                                       "task_description = stdscr.getstr((sh // 2) + 1, (sw // 2) - len("Your task description:") // 2, sw, curses.color_pair(1))
-                stdscr.addstr(sh // 2 + 3, (sw // 2) - len("Task created!") // 2, "Task created!", curses.color_pair(2))
+                stdscr.addstr(sh // 2, (sw // 2) - len("Enter your new task:"), "Enter your new task:",
+                              curses.color_pair(2))
+                name = stdscr.getstr((sh // 2) + 1, (sw // 2) - len("Your task description:"))
+
+                stdscr.addstr(sh // 2 + 2, (sw // 2) - len("Enter your task description:"),
+                              "Enter your task description:", curses.color_pair(2))
+                description = stdscr.getstr((sh // 2) + 3, (sw // 2))
+
+                tasks.append(Task(name, description))
+
+                stdscr.addstr(sh // 2 + 4, (sw // 2) - len("Task created!") // 2, "Task created!", curses.color_pair(2))
+
             elif key == ord('2'):
-                # View existing tasks
-                stdscr.addstr((sh // 2) - 1, (sw // 2) - len("No tasks found.") // 2, "No tasks found.", curses.color_pair(2))
+                for i, task in enumerate(tasks):
+                    stdscr.addstr((sh // 2) + i - 1, (sw // 2) - len(task.name),
+                                  f"{i + 1}. {task.name}: {task.description}", curses.color_pair(2))
+
             elif key == ord('3'):
-                # Exit the program
                 break
-    # Clean up and restore the terminal
+
     stdscr.keypad(False)
     curses.endwin()
-
 # Define keybindings
 kb = KeyBindings()
 

@@ -20,8 +20,7 @@ class Task:
 def get_user_input():
     # Get user input and return it as a string
     session = PromptSession()
-    text = session.prompt('> ', key_bindings=kb)
-    return text
+    return session.prompt('> ', key_bindings=kb)
 
 def predict(text):
     # Send the user's input to the Ollama API and print the response

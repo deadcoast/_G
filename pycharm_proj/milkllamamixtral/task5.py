@@ -10,8 +10,7 @@ url = 'https://api.ollama.com/v1/predict'
 def get_user_input():
     # Get user input and return it as a string
     session = PromptSession()
-    user_input = session.prompt('> ')
-    return user_input
+    return session.prompt('> ')
 
 def predict(text):
     # Send a request to the Ollama API with the user's input
@@ -30,22 +29,17 @@ def predict(text):
 def display_tasks(tasks):
     # Display the list of tasks in a user-friendly format
     for i, task in enumerate(tasks):
-        status = '[ ]' if not task.completed else '[x]'
+        status = '[x]' if task.completed else '[ ]'
         print(f'{i+1}. {status} {task.name}: {task.description}')
 
 def validate_input(user_input):
     # Validate the user's input and return True if it's valid, or False
 otherwise
-    if not user_input:
-        print('Error: Input cannot be empty')
-        return False
-
+if not user_input:
+    print('Error: Input cannot be empty')
     # Example regular expression to check for a valid email address
-    if re.match(r'^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$', user_input) is None:
-        print('Error: Invalid email address format')
-        return False
-
-    return True
+if re.match(r'^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$', user_input) is None:
+    print('Error: Invalid email address format')
 
 def complete_task(tasks):
     # Allow the user to mark a task as complete using keyboard shortcuts
@@ -130,7 +124,7 @@ line
     event = session.get_current_event()
     if event is not None:
         event.cli.handle_key_event(event)
-        continue
+        
 
     # Call complete_task or get_prediction depending on the user's input
     if user_input == 'tasks':

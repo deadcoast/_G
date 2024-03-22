@@ -59,8 +59,7 @@ url = 'https://api.ollama.com/v1/predict'
 def get_user_input():
     # Get user input and return it as a string
     session = PromptSession()
-    user_input = session.prompt('> ')
-    return user_input
+    return session.prompt('> ')
 
 
 def predict(text):
@@ -81,7 +80,7 @@ def predict(text):
 def display_tasks(tasks):
     # Display the list of tasks in a user-friendly format
     for i, task in enumerate(tasks):
-        status = '[ ]' if not task.completed else '[x]'
+        status = '[x]' if task.completed else '[ ]'
         print(f'{i + 1}. {status} {task.name}: {task.description}')
 
 
@@ -92,8 +91,6 @@ def validate_input(user_input):
 otherwise
 if not user_input:
     print('Error: Input cannot be empty')
-    return False
-
 # Example regular expression to check for a valid email address
 if re.match(r'^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$', user_input) is None:
     print('Error: Invalid email address format')
@@ -154,7 +151,7 @@ tasks = [task1, task2]
 
 def display_tasks():
     for i, task in enumerate(tasks):
-        status = '[ ]' if not task.completed else '[x]'
+        status = '[x]' if task.completed else '[ ]'
         print(f'{i + 1}. {status} {task.name}: {task.description}')
 
     # Example regular expression to check for a valid email address
