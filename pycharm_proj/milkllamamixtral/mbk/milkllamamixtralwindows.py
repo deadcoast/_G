@@ -1,3 +1,6 @@
+import time
+from prompt_toolkit import prompt
+from prompt_toolkit.shortcuts import message_dialog
 from prompt_toolkit.eventloop.typing import Event
 from random import random
 from sys import stdin
@@ -106,12 +109,17 @@ def get_user_input():
     return text
 
 def predict(text):
-    # Send the user's input to the Ollama API and print the response
-    data = {'text': text}
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(url, data=json.dumps(data), headers=headers)
-    response_json = json.loads(response.content)
-    print('OLLAMA:', response_json['predictions'][0]['label'])
+    try:
+        url = 'https://api.ollama.com/v1/predict'
+        # Send the user's input to the Ollama API and return the response
+        data = {'text': text}
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(url, data=json.dumps(data), headers=headers)
+        response.raise_for_status()
+        response_json = response.json()
+        return response_json['predictions'][0]['label']
+    except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
+        print('Error:', str(e))
 
 def display_tasks():
     # Display the list of tasks as a numbered list
@@ -154,9 +162,58 @@ load_tasks()
 # Define a Task class to represent individual tasks in our to-do list
 class Task:
     def __init__(self, name, description, completed=False):
+        """
+        Initialize a Task object.
+
+        Args:
+            name (str): The name of the task.
+            description (str): The description of the task.
+            completed (bool, optional): The completion status of the task. Defaults to False.
+        """
         self.name = name
         self.description = description
         self.completed = completed
+
+    def __repr__(self):
+        """
+        Return a machine-readable representation of the task.
+
+        Returns:
+            str: The machine-readable representation of the task.
+        """
+        return f"Task(name='{self.name}', description='{self.description}', completed={self.completed})"
+
+    def to_dict(self):
+        """
+        Return a dictionary representation of the task.
+
+        Returns:
+            dict: The dictionary representation of the task.
+        """
+        return {
+            'name': self.name,
+            'description': self.description,
+            'completed': self.completed
+        }
+
+    @classmethod
+    def from_dict(cls, task_dict):
+        """
+        Create a new Task instance from a dictionary.
+
+        Args:
+            task_dict (dict): The dictionary representation of the task.
+
+        Returns:
+            Task: The new Task instance created from the dictionary.
+        """
+        return cls(**task_dict)
+
+    def mark_as_completed(self):
+        """
+        Mark the task as completed by changing the completed attribute to True.
+        """
+        self.completed = True
 
 # Define the key bindings for navigating and editing the command line
 kb = KeyBindings()
@@ -229,71 +286,47 @@ session = PromptSession(key_bindings=kb)
 
 # Display the prompt and get user input
 user_input = session.prompt('Enter your command: ')
+class Task:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+
+class TaskManager:
+    def __init__(self):
+        self.tasks = []
+
+    def create_task(self, name, description):
+        task = Task(name, description)
+        self.tasks.append(task)
+
+    def view_tasks(self):
+        for i, task in enumerate(self.tasks):
+            print(f"{i + 1}. {task.name}: {task.description}")
+
 def ollama_cli():
-    # Initialize the curses window
-    stdscr = curses.initscr()
-    curses.noecho()
-    curses.curs_set(False)
-    sh, sw = stdscr.getmaxyx()
+    task_manager = TaskManager()
 
-    # Define some colors for visual effects
-    curses.start_color()
-    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
-    curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
-
-    # Create a dynamic greeting message
     greeting = "  __     ______   ____  ___  \n |  |_  / ___/  | / /  \ 'Welcome to the Ollama CLI!'\_\ \n |       \\__ \\  |/ /__/\ /_/ \n |  _    ___) |    \/\n|_,/_./____(_)\/\_\  "
-    greeting_window = curses.newwin(sh, sw, 0, 0)
-    greeting_window.addstr(greeting, curses.color_pair(1))
-    greeting_window.refresh()
+    print(greeting)
 
-    # Wait for a random amount of time before continuing
     wait_time = random.uniform(0.5, 2)
-    curses.napms(int(wait_time * 1000))
+    time.sleep(wait_time)
 
-    # Display the main menu options
     options = ["Create a new task", "View existing tasks", "Exit"]
-    for i, option in enumerate(options):
-        stdscr.addstr(i + 1, (sw // 2) - len(option) // 2, option, curses.color_pair(2))
+    for option in options:
+        print(option)
 
-    # Wait for user input and handle the selection
     while True:
-        key = stdscr.getch()
-        if key in [curses.KEY_UP, curses.KEY_DOWN]:
-            # Handle arrow key events to navigate between options
-            current_option = (stdscr.inch(stdscr.cury, 0) - ord('1')) // len(options[0])
-            if key == curses.KEY_UP and current_option > 0:
-                stdscr.addstr(current_option + 1, 0, ' ', curses.color_pair(1))
-                stdscr.addstr(current_option, 0, options[current_option - 1], curses.color_pair(2))
-            elif key == curses.KEY_DOWN and current_option < len(options) - 1:
-                stdscr.addstr(current_option + 1, 0, ' ', curses.color_pair(1))
-                stdscr.addstr(current_option + 2, 0, options[current_option + 1], curses.color_pair(2))
-        elif key == curses.KEY_ENTER or key in [ord('1'), ord('2'), ord('3')]:
-            stdscr.stdin.addstr(stdin.cury, 0, ' ', curses.color_pair(1))
-
-            if key == ord('1'):
-                stdscr.addstr(sh // 2, (sw // 2) - len("Enter your new task:"), "Enter your new task:",
-                              curses.color_pair(2))
-                name = stdscr.getstr((sh // 2) + 1, (sw // 2) - len("Your task description:"))
-
-                stdscr.addstr(sh // 2 + 2, (sw // 2) - len("Enter your task description:"),
-                              "Enter your task description:", curses.color_pair(2))
-                description = stdscr.getstr((sh // 2) + 3, (sw // 2))
-
-                tasks.append(Task(name, description))
-
-                stdscr.addstr(sh // 2 + 4, (sw // 2) - len("Task created!") // 2, "Task created!", curses.color_pair(2))
-
-            elif key == ord('2'):
-                for i, task in enumerate(tasks):
-                    stdscr.addstr((sh // 2) + i - 1, (sw // 2) - len(task.name),
-                                  f"{i + 1}. {task.name}: {task.description}", curses.color_pair(2))
-
-            elif key == ord('3'):
-                break
-
-    stdscr.keypad(False)
-    curses.endwin()
+        user_input = prompt("Enter your choice: ")
+        if user_input == "1":
+            name = prompt("Enter your new task: ")
+            description = prompt("Enter your task description: ")
+            task_manager.create_task(name, description)
+            message_dialog("Task created!")
+        elif user_input == "2":
+            task_manager.view_tasks()
+        elif user_input == "3":
+            break
 # Define keybindings
 kb = KeyBindings()
 
